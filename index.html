@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion D-Day Widget - Handwriting Style</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <title>Notion D-Day Widget - Galmuri Style</title>
     <style>
+        /* 요청하신 갈무리14 폰트 적용 */
+        @font-face {
+            font-family: 'Galmuri14';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2') format('woff2');
+            font-weight: normal;
+            font-display: swap;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -15,22 +20,21 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: transparent; /* 노션 배경 투명 */
-            font-family: 'Nanum Pen Script', cursive; /* 손글씨 폰트 적용 */
+            background-color: transparent;
+            /* 폰트 변경 적용 */
+            font-family: 'Galmuri14', sans-serif;
         }
 
         .widget-container {
-            /* 손그림 창 스타일 */
             border: 3px solid #333;
             border-radius: 15px 15px 10px 10px;
             background-color: #fff;
-            width: 300px; /* 너비 조정 가능 */
+            width: 300px;
             padding-bottom: 20px;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.1); /* 약간의 그림자 */
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
         }
 
         .window-header {
-            /* 창 상단 바 */
             display: flex;
             align-items: center;
             padding: 10px 15px;
@@ -38,7 +42,6 @@
         }
 
         .control-btn {
-            /* 상단 동그라미 버튼 */
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -54,16 +57,15 @@
         }
 
         .title {
-            font-size: 32px;
+            font-size: 28px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .d-day {
-            font-size: 64px;
-            color: #e03e3e; /* 붉은색 강조 */
-            /* 약간 기울여 손글씨 느낌 강조 */
-            transform: rotate(-2deg); 
+            font-size: 60px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
+            color: #e03e3e;
+            /* 픽셀 폰트는 회전시키면 깨져 보이므로 정방향으로 배치했습니다 */
             display: inline-block;
         }
 
@@ -79,14 +81,13 @@
         </div>
         <div class="content">
             <div class="title">수능까지</div>
-            <div class="d-day" id="d-day-display">계산 중...</div>
+            <div class="d-day" id="d-day-display">Loading..</div>
         </div>
     </div>
 
     <script>
         // ==========================================
-        // [설정] 목표 날짜를 수정하세요 (형식: YYYY-MM-DD)
-        // 예시 이미지의 D-308을 맞추기 위해 임의로 2026년 수능일 근처로 설정했습니다.
+        // [설정] 목표 날짜 (YYYY-MM-DD)
         const targetDateString = "2026-11-19"; 
         // ==========================================
 
@@ -103,15 +104,3 @@
             const displayElement = document.getElementById('d-day-display');
 
             if (diffDays === 0) {
-                displayElement.innerText = "D-Day";
-            } else if (diffDays > 0) {
-                displayElement.innerText = `D-${diffDays}`;
-            } else {
-                displayElement.innerText = `D+${Math.abs(diffDays)}`;
-            }
-        }
-
-        calculateDDay();
-    </script>
-</body>
-</html>
