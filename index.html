@@ -1,11 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion D-Day Widget - Final</title>
+    <title>Notion D-Day Widget - Final Color</title>
     <style>
-        /* 1. 폰트 설정: 갈무리14 */
+        /* 폰트: 갈무리14 */
         @font-face {
             font-family: 'Galmuri14';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2') format('woff2');
@@ -25,53 +25,54 @@
         }
 
         .widget-container {
-            border: 2px solid #333;
-            border-radius: 10px 10px 8px 8px;
-            background-color: #fff;
-            
-            /* 2. 너비 설정: 150px */
-            width: 150px;
-            
+            /* 이미지의 창 테두리 및 그림자 색상 반영 */
+            border: 1px solid #c8c8c8; 
+            border-radius: 6px;
+            background-color: #fdfdfd; /* 이미지의 창 배경색 */
+            width: 150px; /* 너비 150px */
             padding-bottom: 15px;
-            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            /* 약간의 입체감을 위한 그림자 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         .window-header {
             display: flex;
-            justify-content: space-between; /* 양쪽 끝으로 배치 */
+            justify-content: space-between;
             align-items: center;
             padding: 8px 10px;
-            border-bottom: 2px solid #333;
+            /* 이미지의 상단 바 색상 반영 */
+            background-color: #e8e8e8; 
+            border-bottom: 1px solid #d8d8d8;
+            border-radius: 6px 6px 0 0;
             height: 14px;
         }
 
-        /* 왼쪽 신호등 버튼 그룹 */
         .window-controls {
             display: flex;
             align-items: center;
         }
 
         .control-btn {
-            width: 8px;
-            height: 8px;
+            width: 10px; /* 버튼 크기 약간 조정 */
+            height: 10px;
             border-radius: 50%;
-            margin-right: 5px;
+            margin-right: 6px;
         }
-        .btn-red { background-color: #ff5f57; border: 1px solid #e0443e; }
-        .btn-yellow { background-color: #febc2e; border: 1px solid #d89e24; }
-        .btn-green { background-color: #28c840; border: 1px solid #1aab29; }
+        /* 이미지의 신호등 버튼 색상 정확히 반영 */
+        .btn-red { background-color: #ff5f57; border: 1px solid #e1483d; }
+        .btn-yellow { background-color: #ffbd2e; border: 1px solid #e1a11d; }
+        .btn-green { background-color: #27c93f; border: 1px solid #1aaf29; }
 
-        /* 3. 새로고침 버튼 스타일 */
+        /* 새로고침 버튼 스타일 */
         .refresh-btn {
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #333;
+            color: #5a5a5a; /* 아이콘 색상 */
             transition: transform 0.2s;
         }
         
-        /* 마우스 올리면 살짝 회전 효과 */
         .refresh-btn:hover {
             transform: rotate(45deg);
         }
@@ -79,22 +80,23 @@
         .refresh-btn svg {
             width: 14px;
             height: 14px;
-            stroke-width: 3px;
+            stroke-width: 2.5px;
         }
 
         .content {
             text-align: center;
-            padding: 15px 0 5px 0;
+            padding: 20px 0 10px 0;
         }
 
         .title {
             font-size: 16px;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .d-day {
-            font-size: 32px;
+            font-size: 36px;
+            /* 이미지의 D-Day 붉은색 반영 */
             color: #e03e3e;
             display: inline-block;
         }
@@ -128,7 +130,7 @@
 
     <script>
         // ==========================================
-        // [설정] 목표 날짜 (YYYY-MM-DD 형식으로 입력)
+        // [설정] 목표 날짜 (YYYY-MM-DD)
         const targetDateString = "2026-11-19"; 
         // ==========================================
 
