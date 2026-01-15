@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion D-Day Widget - Handwriting Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: transparent; /* 노션 배경 투명 */
+            font-family: 'Nanum Pen Script', cursive; /* 손글씨 폰트 적용 */
+        }
+
+        .widget-container {
+            /* 손그림 창 스타일 */
+            border: 3px solid #333;
+            border-radius: 15px 15px 10px 10px;
+            background-color: #fff;
+            width: 300px; /* 너비 조정 가능 */
+            padding-bottom: 20px;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1); /* 약간의 그림자 */
+        }
+
+        .window-header {
+            /* 창 상단 바 */
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 3px solid #333;
+        }
+
+        .control-btn {
+            /* 상단 동그라미 버튼 */
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .btn-red { background-color: #ff5f57; border: 1px solid #e0443e; }
+        .btn-yellow { background-color: #febc2e; border: 1px solid #d89e24; }
+        .btn-green { background-color: #28c840; border: 1px solid #1aab29; }
+
+        .content {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .d-day {
+            font-size: 64px;
+            color: #e03e3e; /* 붉은색 강조 */
+            /* 약간 기울여 손글씨 느낌 강조 */
+            transform: rotate(-2deg); 
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="widget-container">
+        <div class="window-header">
+            <div class="control-btn btn-red"></div>
+            <div class="control-btn btn-yellow"></div>
+            <div class="control-btn btn-green"></div>
+        </div>
+        <div class="content">
+            <div class="title">수능까지</div>
+            <div class="d-day" id="d-day-display">계산 중...</div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // [설정] 목표 날짜를 수정하세요 (형식: YYYY-MM-DD)
+        // 예시 이미지의 D-308을 맞추기 위해 임의로 2026년 수능일 근처로 설정했습니다.
+        const targetDateString = "2026-11-19"; 
+        // ==========================================
+
+        function calculateDDay() {
+            const today = new Date();
+            const target = new Date(targetDateString);
+            
+            today.setHours(0, 0, 0, 0);
+            target.setHours(0, 0, 0, 0);
+
+            const diffTime = target - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            const displayElement = document.getElementById('d-day-display');
+
+            if (diffDays === 0) {
+                displayElement.innerText = "D-Day";
+            } else if (diffDays > 0) {
+                displayElement.innerText = `D-${diffDays}`;
+            } else {
+                displayElement.innerText = `D+${Math.abs(diffDays)}`;
+            }
+        }
+
+        calculateDDay();
+    </script>
+</body>
+</html>
