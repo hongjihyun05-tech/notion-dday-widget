@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion D-Day Widget - Refresh</title>
+    <title>Notion D-Day Widget - Final</title>
     <style>
-        /* 갈무리14 폰트 */
+        /* 1. 폰트 설정: 갈무리14 */
         @font-face {
             font-family: 'Galmuri14';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2') format('woff2');
@@ -28,7 +28,10 @@
             border: 2px solid #333;
             border-radius: 10px 10px 8px 8px;
             background-color: #fff;
-            width: 150px; /* 미니 사이즈 유지 */
+            
+            /* 2. 너비 설정: 150px */
+            width: 150px;
+            
             padding-bottom: 15px;
             box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
         }
@@ -39,7 +42,7 @@
             align-items: center;
             padding: 8px 10px;
             border-bottom: 2px solid #333;
-            height: 14px; /* 높이 고정 */
+            height: 14px;
         }
 
         /* 왼쪽 신호등 버튼 그룹 */
@@ -58,17 +61,17 @@
         .btn-yellow { background-color: #febc2e; border: 1px solid #d89e24; }
         .btn-green { background-color: #28c840; border: 1px solid #1aab29; }
 
-        /* 새로고침 버튼 스타일 */
+        /* 3. 새로고침 버튼 스타일 */
         .refresh-btn {
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #333;
-            transition: transform 0.2s; /* 클릭 시 효과 */
+            transition: transform 0.2s;
         }
         
-        /* 마우스 올리면 살짝 회전 */
+        /* 마우스 올리면 살짝 회전 효과 */
         .refresh-btn:hover {
             transform: rotate(45deg);
         }
@@ -76,7 +79,7 @@
         .refresh-btn svg {
             width: 14px;
             height: 14px;
-            stroke-width: 3px; /* 아이콘 두께 */
+            stroke-width: 3px;
         }
 
         .content {
@@ -125,7 +128,7 @@
 
     <script>
         // ==========================================
-        // [설정] 목표 날짜 (YYYY-MM-DD)
+        // [설정] 목표 날짜 (YYYY-MM-DD 형식으로 입력)
         const targetDateString = "2026-11-19"; 
         // ==========================================
 
