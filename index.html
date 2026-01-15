@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion D-Day Widget - Galmuri Style</title>
+    <title>Notion D-Day Widget - Refresh</title>
     <style>
-        /* 요청하신 갈무리14 폰트 적용 */
+        /* 갈무리14 폰트 */
         @font-face {
             font-family: 'Galmuri14';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2506-1@1.0/Galmuri14.woff2') format('woff2');
@@ -21,51 +21,78 @@
             align-items: center;
             height: 100vh;
             background-color: transparent;
-            /* 폰트 변경 적용 */
             font-family: 'Galmuri14', sans-serif;
         }
 
         .widget-container {
-            border: 3px solid #333;
-            border-radius: 15px 15px 10px 10px;
+            border: 2px solid #333;
+            border-radius: 10px 10px 8px 8px;
             background-color: #fff;
-            width: 300px;
-            padding-bottom: 20px;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            width: 150px; /* 미니 사이즈 유지 */
+            padding-bottom: 15px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
         }
 
         .window-header {
             display: flex;
+            justify-content: space-between; /* 양쪽 끝으로 배치 */
             align-items: center;
-            padding: 10px 15px;
-            border-bottom: 3px solid #333;
+            padding: 8px 10px;
+            border-bottom: 2px solid #333;
+            height: 14px; /* 높이 고정 */
+        }
+
+        /* 왼쪽 신호등 버튼 그룹 */
+        .window-controls {
+            display: flex;
+            align-items: center;
         }
 
         .control-btn {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            margin-right: 6px;
+            margin-right: 5px;
         }
         .btn-red { background-color: #ff5f57; border: 1px solid #e0443e; }
         .btn-yellow { background-color: #febc2e; border: 1px solid #d89e24; }
         .btn-green { background-color: #28c840; border: 1px solid #1aab29; }
 
+        /* 새로고침 버튼 스타일 */
+        .refresh-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            transition: transform 0.2s; /* 클릭 시 효과 */
+        }
+        
+        /* 마우스 올리면 살짝 회전 */
+        .refresh-btn:hover {
+            transform: rotate(45deg);
+        }
+
+        .refresh-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 3px; /* 아이콘 두께 */
+        }
+
         .content {
             text-align: center;
-            padding: 20px 0;
+            padding: 15px 0 5px 0;
         }
 
         .title {
-            font-size: 28px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
+            font-size: 16px;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .d-day {
-            font-size: 60px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
+            font-size: 32px;
             color: #e03e3e;
-            /* 픽셀 폰트는 회전시키면 깨져 보이므로 정방향으로 배치했습니다 */
             display: inline-block;
         }
 
@@ -75,13 +102,24 @@
 
     <div class="widget-container">
         <div class="window-header">
-            <div class="control-btn btn-red"></div>
-            <div class="control-btn btn-yellow"></div>
-            <div class="control-btn btn-green"></div>
+            <div class="window-controls">
+                <div class="control-btn btn-red"></div>
+                <div class="control-btn btn-yellow"></div>
+                <div class="control-btn btn-green"></div>
+            </div>
+            
+            <div class="refresh-btn" onclick="location.reload()" title="새로고침">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M1 20v-6h6"></path>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+            </div>
         </div>
+
         <div class="content">
             <div class="title">수능까지</div>
-            <div class="d-day" id="d-day-display">Loading..</div>
+            <div class="d-day" id="d-day-display">...</div>
         </div>
     </div>
 
@@ -104,3 +142,15 @@
             const displayElement = document.getElementById('d-day-display');
 
             if (diffDays === 0) {
+                displayElement.innerText = "D-Day";
+            } else if (diffDays > 0) {
+                displayElement.innerText = `D-${diffDays}`;
+            } else {
+                displayElement.innerText = `D+${Math.abs(diffDays)}`;
+            }
+        }
+
+        calculateDDay();
+    </script>
+</body>
+</html>
